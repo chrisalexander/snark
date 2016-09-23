@@ -1,6 +1,6 @@
 ﻿namespace Snark.Slack
 {
-    public class SlackApiClient
+    public class SlackClient
     {
         public SlackRpcClient Rpc { get; }
 

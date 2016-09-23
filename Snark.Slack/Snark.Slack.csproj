@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SlackApiClient.cs" />
+    <Compile Include="SlackClient.cs" />
     <Compile Include="SlackRealtimeClient.cs" />
     <Compile Include="SlackRpcClient.cs" />
     <Compile Include="SlackSession.cs" />
