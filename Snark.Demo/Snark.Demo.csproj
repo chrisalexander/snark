@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4537D049-B78D-4072-A7BC-D41074310CA2}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{10F596DF-1C5D-4944-9A1C-8A354EA869F6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Snark.Slack</RootNamespace>
-    <AssemblyName>Snark.Slack</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>Snark.Demo</RootNamespace>
+    <AssemblyName>Snark.Demo</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,19 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bot.cs" />
-    <Compile Include="Model\SlackUser.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Responses\SlackResponse.cs" />
-    <Compile Include="Responses\StartRealtimeResponse.cs" />
-    <Compile Include="SlackClient.cs" />
-    <Compile Include="SlackRealtimeClient.cs" />
-    <Compile Include="SlackRpcClient.cs" />
-    <Compile Include="SlackSession.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Snark.Slack\Snark.Slack.csproj">
+      <Project>{4537d049-b78d-4072-a7bc-d41074310ca2}</Project>
+      <Name>Snark.Slack</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Snark\Snark.csproj">
-      <Project>{dab7ff07-eb0c-4011-9ce3-4f25c348b3c1}</Project>
+      <Project>{DAB7FF07-EB0C-4011-9CE3-4F25C348B3C1}</Project>
       <Name>Snark</Name>
     </ProjectReference>
   </ItemGroup>

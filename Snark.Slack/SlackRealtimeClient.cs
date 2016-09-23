@@ -1,6 +1,13 @@
-﻿namespace Snark.Slack
+﻿using System;
+using System.Threading.Tasks;
+
+namespace Snark.Slack
 {
-    public class SlackRealtimeClient
+    class SlackRealtimeClient
     {
+        internal Task Connect(SlackSession session)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Snark.Slack
 {
-    public class SlackSession
+    class SlackSession
     {
     }
 }
