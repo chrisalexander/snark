@@ -5,6 +5,8 @@ namespace Snark.Slack.Responses
 {
     class StartRealtimeResponse : SlackResponse
     {
-        public IEnumerable<SlackUser> Users { get; set; }
+        public IEnumerable<Channel> Channels { get; set; }
+
+        public IEnumerable<User> Users { get; set; }
     }
 }

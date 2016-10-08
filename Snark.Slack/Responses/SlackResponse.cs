@@ -2,6 +2,6 @@
 {
     abstract class SlackResponse
     {
-        bool Ok { get; set; }
+        public bool Ok { get; set; }
     }
 }
