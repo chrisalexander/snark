@@ -46,12 +46,14 @@
     <Compile Include="Client\IClient.cs" />
     <Compile Include="Client\ICredentials.cs" />
     <Compile Include="Client\ISession.cs" />
-    <Compile Include="Handlers\Events\IEventData.cs" />
-    <Compile Include="Events\Data\MessageData.cs" />
-    <Compile Include="Handlers\Events\IEventType.cs" />
+    <Compile Include="Events\System\Connect.cs" />
     <Compile Include="Events\Message.cs" />
+    <Compile Include="Events\System\Disconnect.cs" />
+    <Compile Include="Events\System\Error.cs" />
+    <Compile Include="Events\System\ISystemEvent.cs" />
     <Compile Include="Handlers\IAsyncEventResponder.cs" />
     <Compile Include="Handlers\IDeferredEventResponder.cs" />
+    <Compile Include="Events\IEvent.cs" />
     <Compile Include="Handlers\IEventReceiver.cs" />
     <Compile Include="Handlers\ISyncEventResponder.cs" />
     <Compile Include="Chat\OutMessage.cs" />

@@ -1,9 +1,9 @@
-﻿using Snark.Events.Data;
-using Snark.Handlers.Events;
+﻿using Snark.Handlers;
 
 namespace Snark.Events
 {
-    public class Message : IEventType<MessageData>
+    public class Message : IEvent
     {
+        public string Type => "Message";
     }
 }

@@ -1,10 +1,9 @@
-﻿using Snark.Handlers.Events;
+﻿using Snark.Events;
 
 namespace Snark.Handlers
 {
-    public interface IEventReceiver<T, U>
-        where T : IEventType<U>
-        where U : IEventData
+    public interface IEventReceiver<E>
+        where E : IEvent
     {
     }
 }

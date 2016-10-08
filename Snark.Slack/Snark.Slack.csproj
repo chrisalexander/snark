@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot.cs" />
+    <Compile Include="Events\SlackEvent.cs" />
     <Compile Include="Model\ChannelId.cs" />
     <Compile Include="Model\Channel.cs" />
     <Compile Include="Model\SlackId.cs" />

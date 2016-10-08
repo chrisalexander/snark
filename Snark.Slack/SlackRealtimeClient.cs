@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Snark.Events.System;
+using Snark.Slack.Events;
 using WebSocketSharp;
 
 namespace Snark.Slack
@@ -10,17 +13,24 @@ namespace Snark.Slack
 
         private bool disposed = false;
 
-        public event SlackMessage MessageReceived;
+        public event SlackEventReceived EventReceived;
+
+        public event SocketStatus SocketStatusChanged;
 
         internal async Task Connect(SlackSession session)
         {
             // TODO configure socket with proxy
             this.socket = new WebSocket(session.RealtimeConnectionDetails.WebsocketEndpoint.ToString());
 
-            socket.OnOpen += (o, e) => this.MessageReceived?.Invoke("OnOpen");
-            socket.OnError += (o, e) => this.MessageReceived?.Invoke("OnError");
-            socket.OnClose += (o, e) => this.MessageReceived?.Invoke("OnClose");
-            socket.OnMessage += (o, e) => this.MessageReceived?.Invoke(e.Data);
+            socket.OnOpen += (o, e) => this.SocketStatusChanged?.Invoke(new Connect());
+            socket.OnError += (o, e) => this.SocketStatusChanged?.Invoke(new Error());
+            socket.OnClose += (o, e) => this.SocketStatusChanged?.Invoke(new Disconnect());
+            socket.OnMessage += (o, e) =>
+            {
+                var slackEvent = JsonConvert.DeserializeObject<SlackEvent>(e.Data);
+                slackEvent.Data = JsonConvert.DeserializeObject<dynamic>(e.Data);
+                this.EventReceived?.Invoke(slackEvent);
+            };
 
             await Task.Run(() => socket.Connect());
         }
@@ -47,5 +57,7 @@ namespace Snark.Slack
         }
     }
 
-    public delegate void SlackMessage(string message);
+    delegate void SlackEventReceived(SlackEvent @event);
+
+    public delegate void SocketStatus(ISystemEvent @event);
 }

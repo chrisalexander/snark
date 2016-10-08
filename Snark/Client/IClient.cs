@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Snark.Handlers.Events;
+using Snark.Events;
 
 namespace Snark.Client
 {
@@ -9,8 +9,8 @@ namespace Snark.Client
     {
         Task ConnectAsync(T credentials);
 
-        event EventReceived<IEventData> EventReceived;
+        event EventReceived EventReceived;
     }
 
-    public delegate void EventReceived<T>(IEventType<T> eventType, T eventData) where T : IEventData;
+    public delegate void EventReceived(IEvent @event);
 }
