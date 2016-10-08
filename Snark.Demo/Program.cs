@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Snark.Demo
 {
@@ -7,6 +8,8 @@ namespace Snark.Demo
         static void Main(string[] args)
         {
             MainAsync(args[0]).Wait();
+
+            Console.ReadLine();
         }
 
         static async Task MainAsync(string token)
@@ -14,8 +17,6 @@ namespace Snark.Demo
             var bot = Slack.Bot.Create(token);
 
             await bot.ConnectAsync();
-
-            await Task.Delay(10000);
         }
     }
 }

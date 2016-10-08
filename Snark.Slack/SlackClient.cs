@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Snark.Client;
+using Snark.Handlers.Events;
 using Snark.Slack.Model;
 using Snark.Slack.Responses;
 
@@ -9,6 +10,8 @@ namespace Snark.Slack
     class SlackClient : IClient<Token>
     {
         private SlackSession session;
+
+        public event EventReceived<IEventData> EventReceived;
 
         public SlackRpcClient Rpc { get; }
 
@@ -30,6 +33,8 @@ namespace Snark.Slack
             var realtime = await this.Rpc.StartRealtime(token);
 
             this.session = this.CreateSession(realtime, token);
+
+            this.Realtime.MessageReceived += Console.WriteLine;
 
             await this.Realtime.Connect(this.session);
         }
