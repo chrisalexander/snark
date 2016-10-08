@@ -81,7 +81,19 @@ namespace Snark
 
         }
 
+        public void Unsubscribe<E>(Func<E, Task<OutMessage>> callback)
+            where E : IEvent
+        {
+
+        }
+
         public void Subscribe<E>(Action<E, Func<OutMessage>> callback)
+            where E : IEvent
+        {
+
+        }
+
+        public void Unsubscribe<E>(Action<E, Func<OutMessage>> callback)
             where E : IEvent
         {
 
@@ -93,7 +105,19 @@ namespace Snark
 
         }
 
+        public void Unsubscribe<E>(Action<E> callback)
+            where E : IEvent
+        {
+
+        }
+
         public void Subscribe<E>(Func<E, OutMessage> callback)
+            where E : IEvent
+        {
+
+        }
+
+        public void Unsubscribe<E>(Func<E, OutMessage> callback)
             where E : IEvent
         {
 
