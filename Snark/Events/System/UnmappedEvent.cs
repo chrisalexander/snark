@@ -18,5 +18,10 @@ namespace Snark.Events.System
         public string Type => "Unmapped_" + this.service + "_" + this.serviceMessageType;
 
         public dynamic Data => this.data;
+
+        public override string ToString()
+        {
+            return this.Type;
+        }
     }
 }
