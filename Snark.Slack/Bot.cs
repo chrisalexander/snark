@@ -1,10 +1,12 @@
-﻿namespace Snark.Slack
+﻿using Snark.Slack.Model;
+
+namespace Snark.Slack
 {
     public static class Bot
     {
-        public static Snark.Bot Create(string token)
+        public static Bot<Token> Create(Token token)
         {
-            return new Snark.Bot(new SlackClient(), token);
+            return new Bot<Token>(new SlackClient(), token);
         }
     }
 }

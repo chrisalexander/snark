@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Snark.Slack.Model;
 using Snark.Slack.Responses;
 using Snark.Slack.Serialization;
 
@@ -25,7 +26,7 @@ namespace Snark.Slack
             };
         }
 
-        internal Task<StartRealtimeResponse> StartRealtime(string token)
+        internal Task<StartRealtimeResponse> StartRealtime(Token token)
         {
             return this.Get<StartRealtimeResponse>("/rtm.start", new { Token = token });
         }

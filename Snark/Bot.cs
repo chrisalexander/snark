@@ -7,21 +7,22 @@ using Snark.Handlers.Events;
 
 namespace Snark
 {
-    public class Bot
+    public class Bot<Credentials>
+        where Credentials : ICredentials
     {
-        private readonly string token;
+        private readonly Credentials credentials;
 
-        private IClient client;
+        private IClient<Credentials> client;
 
-        public Bot(IClient client, string token)
+        public Bot(IClient<Credentials> client, Credentials credentials)
         {
             this.client = client;
-            this.token = token;
+            this.credentials = credentials;
         }
 
         public async Task ConnectAsync()
         {
-            await this.client.ConnectAsync(token);
+            await this.client.ConnectAsync(credentials);
         }
 
         public void Subscribe<T, U>(IAsyncEventResponder<T, U> responder)

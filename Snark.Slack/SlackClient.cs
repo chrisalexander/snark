@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Snark.Client;
+using Snark.Slack.Model;
 using Snark.Slack.Responses;
 
 namespace Snark.Slack
 {
-    class SlackClient : IClient
+    class SlackClient : IClient<Token>
     {
         private SlackSession session;
 
@@ -24,7 +25,7 @@ namespace Snark.Slack
             throw new NotImplementedException();
         }
 
-        public async Task ConnectAsync(string token)
+        public async Task ConnectAsync(Token token)
         {
             var realtime = await this.Rpc.StartRealtime(token);
 
@@ -33,7 +34,7 @@ namespace Snark.Slack
             await this.Realtime.Connect(this.session);
         }
 
-        private SlackSession CreateSession(StartRealtimeResponse realtime, string token)
+        private SlackSession CreateSession(StartRealtimeResponse realtime, Token token)
         {
             throw new NotImplementedException();
         }

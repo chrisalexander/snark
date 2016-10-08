@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 
 namespace Snark.Client
 {
-    public interface IClient : IDisposable
+    public interface IClient<T> : IDisposable
+        where T : ICredentials
     {
-        Task ConnectAsync(string token);
+        Task ConnectAsync(T credentials);
     }
 }

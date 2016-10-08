@@ -49,6 +49,7 @@
     <Compile Include="Model\Channel.cs" />
     <Compile Include="Model\SlackId.cs" />
     <Compile Include="Model\TeamId.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserId.cs" />
     <Compile Include="Model\UserPresence.cs" />
