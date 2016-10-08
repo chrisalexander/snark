@@ -1,6 +1,8 @@
-﻿namespace Snark.Slack.Model
+﻿using Snark.Chat;
+
+namespace Snark.Slack.Model
 {
-    class Channel
+    class Channel : IChannel
     {
         public ChannelId Id { get; set; }
 

@@ -36,7 +36,7 @@ namespace Snark.Slack
 
         private SlackSession CreateSession(StartRealtimeResponse realtime, Token token)
         {
-            throw new NotImplementedException();
+            return new SlackSession(realtime.Users, realtime.Channels, token, new RealtimeConnectionDetails(realtime.Url));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Snark.Slack.Model;
 
 namespace Snark.Slack.Responses
@@ -8,5 +9,7 @@ namespace Snark.Slack.Responses
         public IEnumerable<Channel> Channels { get; set; }
 
         public IEnumerable<User> Users { get; set; }
+
+        public Uri Url { get; set; }
     }
 }
