@@ -1,4 +1,5 @@
-﻿using Snark.Slack.Model;
+﻿using Snark.Slack.Client;
+using Snark.Slack.Client.Sources.Model;
 
 namespace Snark.Slack
 {

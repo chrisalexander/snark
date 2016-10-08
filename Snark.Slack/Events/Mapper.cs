@@ -1,10 +1,10 @@
 ﻿using Snark.Events;
 using Snark.Events.System;
-using Snark.Slack.Events;
+using Snark.Slack.Client;
 
-namespace Snark.Slack
+namespace Snark.Slack.Events
 {
-    static class EventMapper
+    static class Mapper
     {
         public static IEvent Map(SlackEvent @event)
         {

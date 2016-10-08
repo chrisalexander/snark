@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Snark.Client;
-using Snark.Slack.Model;
+using Snark.Slack.Client.Sources;
+using Snark.Slack.Client.Sources.Model;
+using Snark.Slack.Events;
 using Snark.Slack.Responses;
 
-namespace Snark.Slack
+namespace Snark.Slack.Client
 {
     class SlackClient : IClient<Token>
     {
-        private SlackSession session;
+        private Session session;
 
         public event EventReceived EventReceived;
 
-        public SlackRpcClient Rpc { get; }
+        public Rpc Rpc { get; }
 
-        public SlackRealtimeClient Realtime { get; }
+        public Realtime Realtime { get; }
 
         public static ServiceIdentifier Id => new Slack();
 
         public SlackClient()
         {
-            this.Rpc = new SlackRpcClient();
-            this.Realtime = new SlackRealtimeClient();
+            this.Rpc = new Rpc();
+            this.Realtime = new Realtime();
         }
 
         public void Dispose()
@@ -36,14 +38,14 @@ namespace Snark.Slack
             this.session = this.CreateSession(realtime, token);
 
             this.Realtime.SocketStatusChanged += e => this.EventReceived?.Invoke(e);
-            this.Realtime.EventReceived += e => this.EventReceived?.Invoke(EventMapper.Map(e));
+            this.Realtime.EventReceived += e => this.EventReceived?.Invoke(Mapper.Map(e));
 
             await this.Realtime.Connect(this.session);
         }
 
-        private SlackSession CreateSession(StartRealtimeResponse realtime, Token token)
+        private Session CreateSession(StartRealtimeResponse realtime, Token token)
         {
-            return new SlackSession(realtime.Users, realtime.Channels, token, new RealtimeConnectionDetails(realtime.Url));
+            return new Session(realtime.Users, realtime.Channels, token, new RealtimeConnectionDetails(realtime.Url));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Snark.Client;
 
-namespace Snark.Slack.Model
+namespace Snark.Slack.Client.Sources.Model
 {
     public class Token : ICredentials
     {

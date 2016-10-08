@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Snark.Client;
+using Snark.Slack.Client.Sources.Model;
 using Snark.Slack.Model;
 
-namespace Snark.Slack
+namespace Snark.Slack.Client
 {
-    class SlackSession : ISession<User, Channel>
+    class Session : ISession<User, Channel>
     {
         private IReadOnlyCollection<Channel> channels;
         private IReadOnlyCollection<User> users;
         private Token credentials;
         private RealtimeConnectionDetails realtimeConnectionDetails;
 
-        public SlackSession(
+        public Session(
             IEnumerable<User> users,
             IEnumerable<Channel> channels,
             Token credentials,

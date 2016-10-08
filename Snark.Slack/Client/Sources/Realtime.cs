@@ -5,9 +5,9 @@ using Snark.Events.System;
 using Snark.Slack.Events;
 using WebSocketSharp;
 
-namespace Snark.Slack
+namespace Snark.Slack.Client.Sources
 {
-    class SlackRealtimeClient : IDisposable
+    class Realtime : IDisposable
     {
         private WebSocket socket;
 
@@ -17,7 +17,7 @@ namespace Snark.Slack
 
         public event SocketStatus SocketStatusChanged;
 
-        internal async Task Connect(SlackSession session)
+        internal async Task Connect(Session session)
         {
             // TODO configure socket with proxy
             this.socket = new WebSocket(session.RealtimeConnectionDetails.WebsocketEndpoint.ToString());

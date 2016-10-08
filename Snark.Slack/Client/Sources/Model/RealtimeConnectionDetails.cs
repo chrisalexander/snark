@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Snark.Slack
+namespace Snark.Slack.Client.Sources.Model
 {
     class RealtimeConnectionDetails
     {

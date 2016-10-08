@@ -50,25 +50,25 @@
   <ItemGroup>
     <Compile Include="Bot.cs" />
     <Compile Include="Events\SlackEvent.cs" />
-    <Compile Include="EventMapper.cs" />
+    <Compile Include="Events\Mapper.cs" />
     <Compile Include="Model\ChannelId.cs" />
     <Compile Include="Model\Channel.cs" />
     <Compile Include="Model\SlackId.cs" />
     <Compile Include="Model\TeamId.cs" />
-    <Compile Include="Model\Token.cs" />
+    <Compile Include="Client\Sources\Model\Token.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserId.cs" />
     <Compile Include="Model\UserPresence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RealtimeConnectionDetails.cs" />
+    <Compile Include="Client\Sources\Model\RealtimeConnectionDetails.cs" />
     <Compile Include="Responses\SlackResponse.cs" />
     <Compile Include="Responses\StartRealtimeResponse.cs" />
-    <Compile Include="Serialization\UnderscorePropertyNamesContractResolver.cs" />
+    <Compile Include="Client\Serialization\UnderscorePropertyNamesContractResolver.cs" />
     <Compile Include="Slack.cs" />
-    <Compile Include="SlackClient.cs" />
-    <Compile Include="SlackRealtimeClient.cs" />
-    <Compile Include="SlackRpcClient.cs" />
-    <Compile Include="SlackSession.cs" />
+    <Compile Include="Client\SlackClient.cs" />
+    <Compile Include="Client\Sources\Realtime.cs" />
+    <Compile Include="Client\Sources\Rpc.cs" />
+    <Compile Include="Client\SlackSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Snark\Snark.csproj">

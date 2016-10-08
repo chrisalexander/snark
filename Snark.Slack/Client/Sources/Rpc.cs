@@ -2,13 +2,13 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Snark.Slack.Model;
+using Snark.Slack.Client.Serialization;
+using Snark.Slack.Client.Sources.Model;
 using Snark.Slack.Responses;
-using Snark.Slack.Serialization;
 
-namespace Snark.Slack
+namespace Snark.Slack.Client.Sources
 {
-    class SlackRpcClient
+    class Rpc
     {
         private static readonly string Endpoint = "https://slack.com/api";
 
@@ -16,7 +16,7 @@ namespace Snark.Slack
 
         private readonly JsonSerializerSettings jsonSettings;
 
-        public SlackRpcClient()
+        public Rpc()
         {
             this.client = new HttpClient();
 
