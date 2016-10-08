@@ -16,6 +16,8 @@ namespace Snark.Slack
 
         public SlackRealtimeClient Realtime { get; }
 
+        public static ServiceIdentifier Id => new Slack();
+
         public SlackClient()
         {
             this.Rpc = new SlackRpcClient();
@@ -34,7 +36,7 @@ namespace Snark.Slack
             this.session = this.CreateSession(realtime, token);
 
             this.Realtime.SocketStatusChanged += e => this.EventReceived?.Invoke(e);
-            this.Realtime.EventReceived += Console.WriteLine;
+            this.Realtime.EventReceived += e => this.EventReceived?.Invoke(EventMapper.Map(e));
 
             await this.Realtime.Connect(this.session);
         }

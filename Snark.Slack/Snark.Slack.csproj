@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Bot.cs" />
     <Compile Include="Events\SlackEvent.cs" />
+    <Compile Include="EventMapper.cs" />
     <Compile Include="Model\ChannelId.cs" />
     <Compile Include="Model\Channel.cs" />
     <Compile Include="Model\SlackId.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Responses\SlackResponse.cs" />
     <Compile Include="Responses\StartRealtimeResponse.cs" />
     <Compile Include="Serialization\UnderscorePropertyNamesContractResolver.cs" />
+    <Compile Include="Slack.cs" />
     <Compile Include="SlackClient.cs" />
     <Compile Include="SlackRealtimeClient.cs" />
     <Compile Include="SlackRpcClient.cs" />

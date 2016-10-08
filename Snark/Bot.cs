@@ -22,6 +22,8 @@ namespace Snark
 
         public async Task ConnectAsync()
         {
+            // TODO proper mapping
+            this.client.EventReceived += Console.WriteLine;
             await this.client.ConnectAsync(credentials);
         }
 
