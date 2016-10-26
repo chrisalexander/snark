@@ -4,6 +4,7 @@ using Snark.Chat;
 using Snark.Client;
 using Snark.Events;
 using Snark.Handlers;
+using Snark.Implementation;
 
 namespace Snark
 {
@@ -11,6 +12,8 @@ namespace Snark
         where Credentials : ICredentials
     {
         private readonly Credentials credentials;
+
+        private readonly MessageHandlingCollection<AsyncEventResponder> asyncEventResponders;
 
         private IClient<Credentials> client;
 
@@ -27,98 +30,82 @@ namespace Snark
             await this.client.ConnectAsync(credentials);
         }
 
-        public void Subscribe<E>(IAsyncEventResponder<E> responder)
-            where E : IEvent
+        public void Subscribe(AsyncEventResponder responder)
+        {
+            this.asyncEventResponders.Add(responder);
+        }
+
+        public void Unsubscribe(AsyncEventResponder responder)
+        {
+            this.asyncEventResponders.Remove(responder);
+        }
+
+        public void Subscribe(DeferredEventResponder responder)
         {
 
         }
 
-        public void Unsubscribe<E>(IAsyncEventResponder<E> responder)
-            where E : IEvent
+        public void Unsubscribe(DeferredEventResponder responder)
         {
 
         }
 
-        public void Subscribe<E>(IDeferredEventResponder<E> responder)
-            where E : IEvent
+        public void Subscribe(EventReceiver receiver)
         {
 
         }
 
-        public void Unsubscribe<E>(IDeferredEventResponder<E> responder)
-            where E : IEvent
+        public void Unsubscribe(EventReceiver receiver)
         {
 
         }
 
-        public void Subscribe<E>(IEventReceiver<E> receiver)
-            where E : IEvent
+        public void Subscribe(SyncEventResponder responder)
         {
 
         }
 
-        public void Unsubscribe<E>(IEventReceiver<E> receiver)
-            where E : IEvent
+        public void Unsubscribe(SyncEventResponder responder)
         {
 
         }
 
-        public void Subscribe<E>(ISyncEventResponder<E> responder)
-            where E : IEvent
+        public void Subscribe(Func<IEvent, Task<OutMessage>> callback)
         {
 
         }
 
-        public void Unsubscribe<E>(ISyncEventResponder<E> responder)
-            where E : IEvent
+        public void Unsubscribe(Func<IEvent, Task<OutMessage>> callback)
         {
 
         }
 
-        public void Subscribe<E>(Func<E, Task<OutMessage>> callback)
-            where E : IEvent
+        public void Subscribe(Action<IEvent, Action<OutMessage>> callback)
         {
 
         }
 
-        public void Unsubscribe<E>(Func<E, Task<OutMessage>> callback)
-            where E : IEvent
+        public void Unsubscribe(Action<IEvent, Action<OutMessage>> callback)
         {
 
         }
 
-        public void Subscribe<E>(Action<E, Func<OutMessage>> callback)
-            where E : IEvent
+        public void Subscribe(Action<IEvent> callback)
         {
 
         }
 
-        public void Unsubscribe<E>(Action<E, Func<OutMessage>> callback)
-            where E : IEvent
+        public void Unsubscribe(Action<IEvent> callback)
         {
 
         }
 
-        public void Subscribe<E>(Action<E> callback)
-            where E : IEvent
+        public void Subscribe(Func<IEvent, OutMessage> callback)
         {
 
         }
 
-        public void Unsubscribe<E>(Action<E> callback)
-            where E : IEvent
-        {
-
-        }
-
-        public void Subscribe<E>(Func<E, OutMessage> callback)
-            where E : IEvent
-        {
-
-        }
-
-        public void Unsubscribe<E>(Func<E, OutMessage> callback)
-            where E : IEvent
+        public void Unsubscribe(Func<IEvent, OutMessage> callback)
         {
 
         }

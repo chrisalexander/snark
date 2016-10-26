@@ -53,12 +53,14 @@
     <Compile Include="Events\System\Error.cs" />
     <Compile Include="Events\System\ISystemEvent.cs" />
     <Compile Include="Events\System\UnmappedEvent.cs" />
-    <Compile Include="Handlers\IAsyncEventResponder.cs" />
-    <Compile Include="Handlers\IDeferredEventResponder.cs" />
     <Compile Include="Events\IEvent.cs" />
-    <Compile Include="Handlers\IEventReceiver.cs" />
-    <Compile Include="Handlers\ISyncEventResponder.cs" />
+    <Compile Include="Handlers\AsyncEventResponder.cs" />
+    <Compile Include="Handlers\DeferredEventResponder.cs" />
+    <Compile Include="Handlers\EventReceiver.cs" />
+    <Compile Include="Handlers\AbstractHandler.cs" />
+    <Compile Include="Handlers\SyncEventResponder.cs" />
     <Compile Include="Chat\OutMessage.cs" />
+    <Compile Include="Implementation\MessageHandlingCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Chat\IReplyToken.cs" />
   </ItemGroup>
