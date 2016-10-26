@@ -5,18 +5,17 @@ using Snark.Events;
 
 namespace Snark.Handlers
 {
-    public abstract class AsyncEventResponder : AbstractHandler
+    public abstract class AsyncDeferredEventResponder : AbstractHandler
     {
         /// <summary>
-        /// Handle the given event asynchronously, returning a reply (or null for none).
+        /// Handle the given event asynchronously and reply later.
         /// </summary>
         /// <param name="event">The event.</param>
-        /// <returns>A reply, or null.</returns>
-        public abstract Task<OutMessage> HandleEventAsync(IEvent @event);
+        public abstract Task HandleEventAsync(IEvent @event, Action<OutMessage> reply);
 
         public sealed override async Task ProcessEventAsync(IEvent @event, Action<OutMessage> reply)
         {
-            reply(await this.HandleEventAsync(@event));
+            await this.HandleEventAsync(@event, reply);
         }
     }
 }

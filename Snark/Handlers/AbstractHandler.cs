@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Snark.Chat;
+using Snark.Events;
 
 namespace Snark.Handlers
 {
@@ -21,5 +24,7 @@ namespace Snark.Handlers
         {
             yield break;
         }
+
+        public abstract Task ProcessEventAsync(IEvent @event, Action<OutMessage> reply);
     }
 }

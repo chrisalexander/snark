@@ -13,7 +13,7 @@ namespace Snark
     {
         private readonly Credentials credentials;
 
-        private readonly MessageHandlingCollection<AsyncEventResponder> asyncEventResponders;
+        private readonly MessageHandlingCollection messageHandlers = new MessageHandlingCollection();
 
         private IClient<Credentials> client;
 
@@ -25,47 +25,46 @@ namespace Snark
 
         public async Task ConnectAsync()
         {
-            // TODO proper mapping
-            this.client.EventReceived += Console.WriteLine;
+            this.client.EventReceived += this.HandleEvent;
             await this.client.ConnectAsync(credentials);
         }
 
-        public void Subscribe(AsyncEventResponder responder)
+        public void Subscribe(AbstractHandler handler)
         {
-            this.asyncEventResponders.Add(responder);
+            this.messageHandlers.Add(handler);
         }
 
-        public void Unsubscribe(AsyncEventResponder responder)
+        public void Unsubscribe(AbstractHandler handler)
         {
-            this.asyncEventResponders.Remove(responder);
+            this.messageHandlers.Remove(handler);
         }
-
-        public void Subscribe(DeferredEventResponder responder)
-        {
-
-        }
-
-        public void Unsubscribe(DeferredEventResponder responder)
+        
+        public void Subscribe(Action<IEvent> callback)
         {
 
         }
 
-        public void Subscribe(EventReceiver receiver)
+        public void Unsubscribe(Action<IEvent> callback)
         {
 
         }
 
-        public void Unsubscribe(EventReceiver receiver)
+        public void Subscribe(Func<IEvent, Task> callback)
         {
 
         }
 
-        public void Subscribe(SyncEventResponder responder)
+        public void Unsubscribe(Func<IEvent, Task> callback)
         {
 
         }
 
-        public void Unsubscribe(SyncEventResponder responder)
+        public void Subscribe(Func<IEvent, OutMessage> callback)
+        {
+
+        }
+
+        public void Unsubscribe(Func<IEvent, OutMessage> callback)
         {
 
         }
@@ -90,26 +89,16 @@ namespace Snark
 
         }
 
-        public void Subscribe(Action<IEvent> callback)
+        public void Subscribe(Func<IEvent, Action<OutMessage>, Task> callback)
         {
 
         }
 
-        public void Unsubscribe(Action<IEvent> callback)
+        public void Unsubscribe(Func<IEvent, Action<OutMessage>, Task> callback)
         {
 
         }
-
-        public void Subscribe(Func<IEvent, OutMessage> callback)
-        {
-
-        }
-
-        public void Unsubscribe(Func<IEvent, OutMessage> callback)
-        {
-
-        }
-
+        
         public void Reply(IReplyToken token, OutMessage message)
         {
 
@@ -123,6 +112,19 @@ namespace Snark
         public void Typing(IChannel channel)
         {
 
+        }
+
+        private async void HandleEvent(IEvent @event)
+        {
+            var handlers = this.messageHandlers.Subscribers(@event.GetType());
+
+            foreach (var handler in handlers)
+            {
+                // TODO do something with messages...
+                await handler.ProcessEventAsync(
+                                            @event,
+                                            outMessage => Console.WriteLine(outMessage));
+            }
         }
     }
 }

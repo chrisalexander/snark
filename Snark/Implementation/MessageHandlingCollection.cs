@@ -6,14 +6,13 @@ using Snark.Handlers;
 
 namespace Snark.Implementation
 {
-    public class MessageHandlingCollection<T>
-        where T : AbstractHandler
+    public class MessageHandlingCollection
     {
-        private ConcurrentDictionary<Type, HashSet<T>> collections = new ConcurrentDictionary<Type, HashSet<T>>();
+        private ConcurrentDictionary<Type, HashSet<AbstractHandler>> collections = new ConcurrentDictionary<Type, HashSet<AbstractHandler>>();
 
-        private HashSet<T> allTypes = new HashSet<T>();
+        private HashSet<AbstractHandler> allTypes = new HashSet<AbstractHandler>();
 
-        public void Add(T handler)
+        public void Add(AbstractHandler handler)
         {
             var types = handler.SupportedMessageTypes().ToList();
 
@@ -28,20 +27,20 @@ namespace Snark.Implementation
             }
         }
         
-        public void Remove(T handler)
+        public void Remove(AbstractHandler handler)
         {
             allTypes.Remove(handler);
             this.collections.Values.Select(v => v.Remove(handler));
         }
 
-        public IEnumerable<T> Subscribers(Type key)
+        public IEnumerable<AbstractHandler> Subscribers(Type key)
         {
             return this.allTypes.Concat(this.GetSet(key));
         }
 
-        private HashSet<T> GetSet(Type key)
+        private HashSet<AbstractHandler> GetSet(Type key)
         {
-            return this.collections.GetOrAdd(key, _ => new HashSet<T>());
+            return this.collections.GetOrAdd(key, _ => new HashSet<AbstractHandler>());
         }
     }
 }

@@ -54,9 +54,11 @@
     <Compile Include="Events\System\ISystemEvent.cs" />
     <Compile Include="Events\System\UnmappedEvent.cs" />
     <Compile Include="Events\IEvent.cs" />
+    <Compile Include="Handlers\AsyncEventReceiver.cs" />
     <Compile Include="Handlers\AsyncEventResponder.cs" />
-    <Compile Include="Handlers\DeferredEventResponder.cs" />
-    <Compile Include="Handlers\EventReceiver.cs" />
+    <Compile Include="Handlers\AsyncDeferredEventResponder.cs" />
+    <Compile Include="Handlers\SyncDeferredEventResponder.cs" />
+    <Compile Include="Handlers\SyncEventReceiver.cs" />
     <Compile Include="Handlers\AbstractHandler.cs" />
     <Compile Include="Handlers\SyncEventResponder.cs" />
     <Compile Include="Chat\OutMessage.cs" />
