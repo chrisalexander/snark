@@ -6,7 +6,7 @@ using Snark.Handlers;
 
 namespace Snark.Implementation
 {
-    public class MessageHandlingCollection
+    class MessageHandlingCollection
     {
         private ConcurrentDictionary<Type, HashSet<AbstractHandler>> collections = new ConcurrentDictionary<Type, HashSet<AbstractHandler>>();
 

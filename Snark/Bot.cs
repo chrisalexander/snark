@@ -9,16 +9,15 @@ using Snark.Implementation;
 
 namespace Snark
 {
-    public class Bot<Credentials>
-        where Credentials : ICredentials
+    public class Bot
     {
-        private readonly Credentials credentials;
+        private readonly ICredentials credentials;
 
         private readonly MessageHandlingCollection messageHandlers = new MessageHandlingCollection();
 
-        private IClient<Credentials> client;
+        private IClient client;
 
-        public Bot(IClient<Credentials> client, Credentials credentials)
+        public Bot(IClient client, ICredentials credentials)
         {
             this.client = client;
             this.credentials = credentials;

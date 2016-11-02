@@ -4,10 +4,9 @@ using Snark.Events;
 
 namespace Snark.Client
 {
-    public interface IClient<T> : IDisposable
-        where T : ICredentials
+    public interface IClient : IDisposable
     {
-        Task ConnectAsync(T credentials);
+        Task ConnectAsync(ICredentials credentials);
 
         event EventReceived EventReceived;
     }
