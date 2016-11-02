@@ -12,6 +12,8 @@ namespace Snark.Implementation
 
         private HashSet<AbstractHandler> allTypes = new HashSet<AbstractHandler>();
 
+        private ConcurrentDictionary<object, AbstractHandler> keyCache = new ConcurrentDictionary<object, AbstractHandler>();
+
         public void Add(AbstractHandler handler)
         {
             var types = handler.SupportedMessageTypes().ToList();
@@ -26,11 +28,29 @@ namespace Snark.Implementation
                 this.GetSet(type).Add(handler);
             }
         }
+
+        public void Add(object key, AbstractHandler handler)
+        {
+            if (this.keyCache.TryAdd(key, handler))
+            {
+                this.Add(handler);
+            }
+        }
         
         public void Remove(AbstractHandler handler)
         {
             allTypes.Remove(handler);
             this.collections.Values.Select(v => v.Remove(handler));
+        }
+
+        public void Remove(object key)
+        {
+            AbstractHandler handler;
+
+            if (this.keyCache.TryRemove(key, out handler))
+            {
+                this.Remove(handler);
+            }
         }
 
         public IEnumerable<AbstractHandler> Subscribers(Type key)

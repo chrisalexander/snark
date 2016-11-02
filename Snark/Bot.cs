@@ -41,62 +41,62 @@ namespace Snark
         
         public void Subscribe(Action<IEvent> callback)
         {
-
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
         }
 
         public void Unsubscribe(Action<IEvent> callback)
         {
-
+            this.messageHandlers.Remove(callback);
         }
 
         public void Subscribe(Func<IEvent, Task> callback)
         {
-
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
         }
 
         public void Unsubscribe(Func<IEvent, Task> callback)
         {
-
+            this.messageHandlers.Remove(callback);
         }
 
         public void Subscribe(Func<IEvent, OutMessage> callback)
         {
-
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
         }
 
         public void Unsubscribe(Func<IEvent, OutMessage> callback)
         {
-
+            this.messageHandlers.Remove(callback);
         }
 
         public void Subscribe(Func<IEvent, Task<OutMessage>> callback)
         {
-
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
         }
 
         public void Unsubscribe(Func<IEvent, Task<OutMessage>> callback)
         {
-
+            this.messageHandlers.Remove(callback);
         }
 
         public void Subscribe(Action<IEvent, Action<OutMessage>> callback)
         {
-
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
         }
 
         public void Unsubscribe(Action<IEvent, Action<OutMessage>> callback)
         {
-
+            this.messageHandlers.Remove(callback);
         }
 
         public void Subscribe(Func<IEvent, Action<OutMessage>, Task> callback)
         {
-
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
         }
 
         public void Unsubscribe(Func<IEvent, Action<OutMessage>, Task> callback)
         {
-
+            this.messageHandlers.Remove(callback);
         }
         
         public void Reply(IReplyToken token, OutMessage message)
@@ -120,7 +120,6 @@ namespace Snark
 
             foreach (var handler in handlers)
             {
-                // TODO do something with messages...
                 await handler.ProcessEventAsync(
                                             @event,
                                             outMessage => Console.WriteLine(outMessage));

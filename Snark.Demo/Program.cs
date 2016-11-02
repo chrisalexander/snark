@@ -16,6 +16,8 @@ namespace Snark.Demo
         {
             var bot = Slack.Bot.Create(token);
 
+            bot.Subscribe(e => Console.WriteLine(e));
+
             await bot.ConnectAsync();
         }
     }
