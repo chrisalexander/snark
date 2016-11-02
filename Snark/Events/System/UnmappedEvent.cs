@@ -4,18 +4,19 @@ namespace Snark.Events.System
 {
     public class UnmappedEvent : ISystemEvent
     {
-        private ServiceIdentifier service;
         private string serviceMessageType;
         private dynamic data;
 
         public UnmappedEvent(ServiceIdentifier service, string serviceMessageType, dynamic data)
         {
-            this.service = service;
+            this.Service = service;
             this.serviceMessageType = serviceMessageType;
             this.data = data;
         }
 
-        public string Type => "Unmapped_" + this.service + "_" + this.serviceMessageType;
+        public string Type => "Unmapped_" + this.Service + "_" + this.serviceMessageType;
+
+        public ServiceIdentifier Service { get; }
 
         public dynamic Data => this.data;
 

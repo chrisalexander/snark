@@ -22,9 +22,9 @@ namespace Snark.Slack.Client.Sources
             // TODO configure socket with proxy
             this.socket = new WebSocket(session.RealtimeConnectionDetails.WebsocketEndpoint.ToString());
 
-            socket.OnOpen += (o, e) => this.SocketStatusChanged?.Invoke(new Connect());
-            socket.OnError += (o, e) => this.SocketStatusChanged?.Invoke(new Error());
-            socket.OnClose += (o, e) => this.SocketStatusChanged?.Invoke(new Disconnect());
+            socket.OnOpen += (o, e) => this.SocketStatusChanged?.Invoke(new Connect(SlackClient.Id));
+            socket.OnError += (o, e) => this.SocketStatusChanged?.Invoke(new Error(SlackClient.Id));
+            socket.OnClose += (o, e) => this.SocketStatusChanged?.Invoke(new Disconnect(SlackClient.Id));
             socket.OnMessage += (o, e) =>
             {
                 var slackEvent = JsonConvert.DeserializeObject<SlackEvent>(e.Data);
