@@ -1,6 +1,4 @@
-﻿using Snark.Handlers;
-
-namespace Snark.Events
+﻿namespace Snark.Events
 {
     public class Message : IEvent
     {
