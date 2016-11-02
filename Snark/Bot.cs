@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Snark.Chat;
 using Snark.Client;
@@ -39,9 +40,9 @@ namespace Snark
             this.messageHandlers.Remove(handler);
         }
         
-        public void Subscribe(Action<IEvent> callback)
+        public void Subscribe(Action<IEvent> callback, IEnumerable<Type> types = null)
         {
-            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback, types));
         }
 
         public void Unsubscribe(Action<IEvent> callback)
@@ -49,9 +50,9 @@ namespace Snark
             this.messageHandlers.Remove(callback);
         }
 
-        public void Subscribe(Func<IEvent, Task> callback)
+        public void Subscribe(Func<IEvent, Task> callback, IEnumerable<Type> types = null)
         {
-            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback, types));
         }
 
         public void Unsubscribe(Func<IEvent, Task> callback)
@@ -59,9 +60,9 @@ namespace Snark
             this.messageHandlers.Remove(callback);
         }
 
-        public void Subscribe(Func<IEvent, OutMessage> callback)
+        public void Subscribe(Func<IEvent, OutMessage> callback, IEnumerable<Type> types = null)
         {
-            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback, types));
         }
 
         public void Unsubscribe(Func<IEvent, OutMessage> callback)
@@ -69,9 +70,9 @@ namespace Snark
             this.messageHandlers.Remove(callback);
         }
 
-        public void Subscribe(Func<IEvent, Task<OutMessage>> callback)
+        public void Subscribe(Func<IEvent, Task<OutMessage>> callback, IEnumerable<Type> types = null)
         {
-            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback, types));
         }
 
         public void Unsubscribe(Func<IEvent, Task<OutMessage>> callback)
@@ -79,9 +80,9 @@ namespace Snark
             this.messageHandlers.Remove(callback);
         }
 
-        public void Subscribe(Action<IEvent, Action<OutMessage>> callback)
+        public void Subscribe(Action<IEvent, Action<OutMessage>> callback, IEnumerable<Type> types = null)
         {
-            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback, types));
         }
 
         public void Unsubscribe(Action<IEvent, Action<OutMessage>> callback)
@@ -89,9 +90,9 @@ namespace Snark
             this.messageHandlers.Remove(callback);
         }
 
-        public void Subscribe(Func<IEvent, Action<OutMessage>, Task> callback)
+        public void Subscribe(Func<IEvent, Action<OutMessage>, Task> callback, IEnumerable<Type> types = null)
         {
-            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback));
+            this.messageHandlers.Add(callback, new WrappedLambdaHandler(callback, types));
         }
 
         public void Unsubscribe(Func<IEvent, Action<OutMessage>, Task> callback)
