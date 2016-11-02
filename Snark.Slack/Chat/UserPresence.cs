@@ -1,4 +1,4 @@
-﻿namespace Snark.Slack.Model
+﻿namespace Snark.Slack.Chat
 {
     enum UserPresence
     {

@@ -3,9 +3,7 @@ using Snark.Chat;
 
 namespace Snark.Client
 {
-    public interface ISession<User, Channel>
-        where User : IUser
-        where Channel : IChannel
+    public interface ISession
     {
         IReadOnlyCollection<User> Users { get; }
 

@@ -1,10 +1,13 @@
 ﻿using Snark.Chat;
+using Snark.Slack.Client;
 
-namespace Snark.Slack.Model
+namespace Snark.Slack.Chat
 {
-    class Channel : IChannel
+    class Channel : Snark.Chat.Channel
     {
-        public ChannelId Id { get; set; }
+        public Channel() : base(SlackClient.Id)
+        {
+        }
 
         public string Name { get; set; }
 

@@ -51,14 +51,10 @@
     <Compile Include="Bot.cs" />
     <Compile Include="Events\SlackEvent.cs" />
     <Compile Include="Events\Mapper.cs" />
-    <Compile Include="Model\ChannelId.cs" />
-    <Compile Include="Model\Channel.cs" />
-    <Compile Include="Model\SlackId.cs" />
-    <Compile Include="Model\TeamId.cs" />
+    <Compile Include="Chat\Channel.cs" />
     <Compile Include="Client\Sources\Model\Token.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserId.cs" />
-    <Compile Include="Model\UserPresence.cs" />
+    <Compile Include="Chat\User.cs" />
+    <Compile Include="Chat\UserPresence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Client\Sources\Model\RealtimeConnectionDetails.cs" />
     <Compile Include="Responses\SlackResponse.cs" />

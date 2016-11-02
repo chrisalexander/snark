@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Snark.Slack.Model;
+using Snark.Slack.Chat;
 
 namespace Snark.Slack.Responses
 {

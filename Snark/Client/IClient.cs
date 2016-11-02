@@ -6,6 +6,8 @@ namespace Snark.Client
 {
     public interface IClient : IDisposable
     {
+        ISession Session { get; }
+
         Task ConnectAsync(ICredentials credentials);
 
         event EventReceived EventReceived;

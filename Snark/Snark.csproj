@@ -41,8 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot.cs" />
-    <Compile Include="Chat\IChannel.cs" />
-    <Compile Include="Chat\IUser.cs" />
+    <Compile Include="Chat\Channel.cs" />
+    <Compile Include="Chat\ChannelId.cs" />
+    <Compile Include="Chat\ReplyToken.cs" />
+    <Compile Include="Chat\TeamId.cs" />
+    <Compile Include="Chat\User.cs" />
+    <Compile Include="Chat\UserId.cs" />
     <Compile Include="Client\IClient.cs" />
     <Compile Include="Client\ICredentials.cs" />
     <Compile Include="Client\ISession.cs" />
@@ -66,7 +70,6 @@
     <Compile Include="Implementation\Extensions.cs" />
     <Compile Include="Implementation\MessageHandlingCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Chat\IReplyToken.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

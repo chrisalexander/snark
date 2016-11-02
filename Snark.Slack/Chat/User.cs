@@ -1,13 +1,13 @@
-﻿using Snark.Chat;
+﻿using Snark.Slack.Client;
 
-namespace Snark.Slack.Model
+namespace Snark.Slack.Chat
 {
-    class User : IUser
+    class User : Snark.Chat.User
     {
-        public UserId Id { get; set; }
-
-        public TeamId TeamId { get; set; }
-
+        public User() : base(SlackClient.Id)
+        {
+        }
+        
         public string Name { get; set; }
 
         public string Color { get; set; }

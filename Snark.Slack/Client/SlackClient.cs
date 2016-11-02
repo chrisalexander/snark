@@ -32,6 +32,8 @@ namespace Snark.Slack.Client
             throw new NotImplementedException();
         }
 
+        public ISession Session => this.session;
+
         public async Task ConnectAsync(ICredentials credentials)
         {
             var token = credentials.As<Token>();

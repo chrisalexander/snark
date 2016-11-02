@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Snark.Chat;
 using Snark.Client;
@@ -21,6 +22,22 @@ namespace Snark
         {
             this.client = client;
             this.credentials = credentials;
+        }
+
+        public IReadOnlyDictionary<ChannelId, Channel> Channels
+        {
+            get
+            {
+                return this.client.Session.Channels.ToDictionary(c => c.Id);
+            }
+        }
+
+        public IReadOnlyDictionary<UserId, User> Users
+        {
+            get
+            {
+                return this.client.Session.Users.ToDictionary(u => u.Id);
+            }
         }
 
         public async Task ConnectAsync()
@@ -99,17 +116,17 @@ namespace Snark
             this.messageHandlers.Remove(callback);
         }
         
-        public void Reply(IReplyToken token, OutMessage message)
+        public void Reply(ReplyToken token, OutMessage message)
         {
 
         }
 
-        public void Send(IChannel channel, OutMessage message)
+        public void Send(Channel channel, OutMessage message)
         {
 
         }
 
-        public void Typing(IChannel channel)
+        public void Typing(Channel channel)
         {
 
         }
