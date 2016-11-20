@@ -51,6 +51,7 @@
     <Compile Include="Client\ICredentials.cs" />
     <Compile Include="Client\ISession.cs" />
     <Compile Include="Client\ServiceIdentifier.cs" />
+    <Compile Include="Events\System\BaseSystemEvent.cs" />
     <Compile Include="Events\System\Connect.cs" />
     <Compile Include="Events\Message.cs" />
     <Compile Include="Events\System\Disconnect.cs" />

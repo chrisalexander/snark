@@ -2,15 +2,11 @@
 
 namespace Snark.Events.System
 {
-    public class Disconnect : ISystemEvent
+    public class Disconnect : BaseSystemEvent
     {
         public Disconnect(ServiceIdentifier serviceIdentifier)
-        {
-            this.Service = serviceIdentifier;
-        }
+            : base(serviceIdentifier) { }
 
-        public string Type => "Disconnect";
-
-        public ServiceIdentifier Service { get; }
+        public override string Type => "Disconnect";
     }
 }

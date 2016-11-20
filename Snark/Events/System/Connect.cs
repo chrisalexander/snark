@@ -2,15 +2,11 @@
 
 namespace Snark.Events.System
 {
-    public class Connect : ISystemEvent
+    public class Connect : BaseSystemEvent
     {
-        public Connect(ServiceIdentifier serviceIdentifier)
-        {
-            this.Service = serviceIdentifier;
-        }
+        public Connect(ServiceIdentifier service)
+            : base(service) { }
 
-        public string Type => "Connect";
-
-        public ServiceIdentifier Service { get; }
+        public override string Type => "Connect";
     }
 }

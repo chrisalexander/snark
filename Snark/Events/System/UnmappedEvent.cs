@@ -2,22 +2,20 @@
 
 namespace Snark.Events.System
 {
-    public class UnmappedEvent : ISystemEvent
+    public class UnmappedEvent : BaseSystemEvent
     {
         private string serviceMessageType;
         private dynamic data;
 
         public UnmappedEvent(ServiceIdentifier service, string serviceMessageType, dynamic data)
+            : base(service)
         {
-            this.Service = service;
             this.serviceMessageType = serviceMessageType;
             this.data = data;
         }
 
-        public string Type => "Unmapped_" + this.Service + "_" + this.serviceMessageType;
-
-        public ServiceIdentifier Service { get; }
-
+        public override string Type => "Unmapped_" + this.Service + "_" + this.serviceMessageType;
+        
         public dynamic Data => this.data;
 
         public override string ToString()

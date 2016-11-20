@@ -2,15 +2,11 @@
 
 namespace Snark.Events.System
 {
-    public class Error : ISystemEvent
+    public class Error : BaseSystemEvent
     {
         public Error(ServiceIdentifier serviceIdentifier)
-        {
-            this.Service = serviceIdentifier;
-        }
+            : base(serviceIdentifier) { }
 
-        public string Type => "Error";
-
-        public ServiceIdentifier Service { get; }
+        public override string Type => "Error";
     }
 }
